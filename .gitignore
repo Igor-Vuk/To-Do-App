@@ -1,0 +1,14 @@
+# Editor files
+*.sublime-*
+.idea/
+
+# OS generated stuff
+.DS_Store
+.DS_Store?
+
+# Npm
+npm-debug.log
+/node_modules
+
+# Public
+public/dist
