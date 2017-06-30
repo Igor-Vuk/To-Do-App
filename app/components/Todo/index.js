@@ -4,10 +4,10 @@ import { bindActionCreators } from 'redux';
 
 class Todo extends Component {
   render() {
-    const {text} = this.props
+    const {text, id} = this.props
     return (
       <div>
-        {text}
+        {id}. {text}
       </div>
     )
   }

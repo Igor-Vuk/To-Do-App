@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router';
 import TodoList from 'TodoList'
+import AddTodo from 'AddTodo'
+import uuid from 'node-uuid'
 
 import './app.scss';
 
@@ -13,15 +15,15 @@ class TodoApp extends Component {
   state = {
     todos: [
       {
-        id: 1,
+        id: uuid(),
         text: 'Walk the dog'
       },
       {
-        id: 2,
+        id: uuid(),
         text: 'Walk the cat'
       },
       {
-        id: 3,
+        id: uuid(),
         text: 'Buy bread'
       }
     ]
@@ -31,12 +33,24 @@ class TodoApp extends Component {
   //   super(props, context);
 
   // }
+  handleAddTodo = (text) => {
+    this.setState({
+      todos: [
+        ...this.state.todos, 
+        {
+          id: uuid(),
+          text: text
+        }
+      ]
+    })
+  }
 
   render() {
     const {todos} = this.state
     return (
       <div className="app">
         <TodoList todos={todos} />
+        <AddTodo onAddTodo = {this.handleAddTodo}/>
       </div>
     );
   }

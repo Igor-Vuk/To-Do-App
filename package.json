@@ -53,6 +53,7 @@
     "jsdom": "^9.9.1",
     "mocha": "^3.2.0",
     "node-sass": "^4.1.1",
+    "node-uuid": "^1.4.8",
     "react-addons-test-utils": "^15.4.1",
     "redux-mock-store": "^1.2.1",
     "sass-loader": "^4.1.1",
