@@ -4,29 +4,49 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router';
+import TodoList from 'TodoList'
 
 import './app.scss';
 
-class App extends Component {
-  constructor(props, context) {
-    super(props, context);
-    
+class TodoApp extends Component {
+
+  state = {
+    todos: [
+      {
+        id: 1,
+        text: 'Walk the dog'
+      },
+      {
+        id: 2,
+        text: 'Walk the cat'
+      },
+      {
+        id: 3,
+        text: 'Buy bread'
+      }
+    ]
   }
 
+  // constructor(props, context) {
+  //   super(props, context);
+
+  // }
+
   render() {
+    const {todos} = this.state
     return (
       <div className="app">
-        <h1>ToDo App</h1>
+        <TodoList todos={todos} />
       </div>
     );
   }
 }
 
-App.propTypes = {
+TodoApp.propTypes = {
   children: PropTypes.object
 };
 
-App.contextTypes = {
+TodoApp.contextTypes = {
   router: PropTypes.object.isRequired
 };
 
@@ -40,4 +60,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(TodoApp);

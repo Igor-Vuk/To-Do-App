@@ -3,8 +3,8 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 
-import App from 'App';
+import TodoApp from 'TodoApp';
 
 export default (
-  <Route path="/" component={App} />
+  <Route path="/" component={TodoApp} />
 );
