@@ -4,10 +4,13 @@ import { bindActionCreators } from 'redux';
 
 class Todo extends Component {
   render() {
-    const {text, id} = this.props
+    const {text, id, completed, onToggle} = this.props
     return (
-      <div>
-        {id}. {text}
+      <div onClick={() => {
+        this.props.onToggle(id)  
+      }}>
+        <input type="checkbox" checked={completed}/>
+        {text}
       </div>
     )
   }

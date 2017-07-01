@@ -9,6 +9,9 @@ export default {
     'webpack/hot/dev-server',
     'babel-polyfill',
     `isomorphic-fetch`,
+    'script-loader!jquery/dist/jquery.min.js',
+    'script-loader!tether/dist/js/tether.min.js',
+    'script-loader!bootstrap/dist/js/bootstrap.min.js',
     `${__dirname}/app/index.js`
   ],
   output: {
@@ -47,8 +50,7 @@ export default {
         loader: "style-loader!css-loader" 
       },
       {
-        test: /\.scss$/,
-        include: path.join(__dirname, 'app'),
+        test: /\.(scss)$/,
         loaders: [
           'style',
           'css?sourceMap',

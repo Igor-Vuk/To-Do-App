@@ -19,7 +19,7 @@ class AddTodo extends Component {
       <div>
         <form onSubmit={this.handleSubmit}>
           <input type="text" ref="todoText" placeholder="Add todo!"/>
-          <button>Add Todo</button>
+          <button className="btn btn-danger">Add Todo</button>
         </form>
       </div>
     )

@@ -16,15 +16,18 @@ class TodoApp extends Component {
     todos: [
       {
         id: uuid(),
-        text: 'Walk the dog'
+        text: 'Walk the dog',
+        completed: false
       },
       {
         id: uuid(),
-        text: 'Walk the cat'
+        text: 'Walk the cat',
+        completed: true
       },
       {
         id: uuid(),
-        text: 'Buy bread'
+        text: 'Buy bread',
+        completed: true
       }
     ]
   }
@@ -33,24 +36,43 @@ class TodoApp extends Component {
   //   super(props, context);
 
   // }
-  handleAddTodo = (text) => {
+
+  handleAddTodo = text => {
     this.setState({
       todos: [
         ...this.state.todos, 
         {
           id: uuid(),
-          text: text
+          text: text,
+          completed: false
         }
       ]
     })
   }
 
+  handleToggle = id => {
+    const updatedTodos = this.state.todos.map((todo) => {
+      if(todo.id === id) {
+        todo.completed = !todo.completed
+      }
+      return todo
+    })
+    this.setState({todos: updatedTodos})
+  }
+
   render() {
     const {todos} = this.state
     return (
-      <div className="app">
-        <TodoList todos={todos} />
-        <AddTodo onAddTodo = {this.handleAddTodo}/>
+      <div className="container">
+        <div className="row justify-content-center">
+          <div className="col-sm-11 col-md-6 col-md-5">
+            <h1>Todo App</h1>
+            <TodoList todos={todos} onToggle={this.handleToggle}/>
+            <AddTodo onAddTodo = {this.handleAddTodo}/>
+          </div>
+        </div>
+
+        
       </div>
     );
   }
