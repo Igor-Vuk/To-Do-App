@@ -1,15 +1,17 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+// import { bindActionCreators } from 'redux';
+const actions = require('actions')
 
 class AddTodo extends Component {
 
   handleSubmit = e => {
     e.preventDefault()
+    const {dispatch} = this.props
     const todoText = this.refs.todoText.value;
     if(todoText.length > 0) {
       this.refs.todoText.value = ''
-      this.props.onAddTodo(todoText)
+      dispatch(actions.startAddTodo(todoText))
     } else {
       this.refs.todoText.focus()
     }
@@ -26,14 +28,14 @@ class AddTodo extends Component {
   }
 }
 
-function mapStateToProps(state, ownProps) {
-  return {};
-}
+// function mapStateToProps(state, ownProps) {
+//   return {};
+// }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators({}, dispatch)
-  };
-}
+// function mapDispatchToProps(dispatch) {
+//   return {
+//     actions: bindActionCreators({}, dispatch)
+//   };
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddTodo);
+export default connect()(AddTodo);

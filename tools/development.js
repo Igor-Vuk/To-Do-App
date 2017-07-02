@@ -13,7 +13,7 @@ new WebpackDevServer(webpack(config), {
   quiet: false,
   historyApiFallback: true,
   proxy: {
-    '*' : 'http://localhost:3000'
+    '*' : 'http://localhost:3000',
   }
 }).listen(9000, 'localhost', (err) => {
   if (err) {

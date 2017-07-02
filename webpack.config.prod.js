@@ -14,11 +14,17 @@ export default {
     filename: 'js/bundle.js'
   },
   resolve: {
-    root: '__dirname',
+    root: __dirname,
     modulesDirectories: [
       'node_modules',
       './app/components'
-    ]
+    ],
+    alias: {
+      actions: 'app/actions/index.js',
+      reducers: 'app/reducers/index.js',
+      configureStore: 'app/store/configureStore.js'
+    },
+    extensions: ["", ".js", ".jsx"]
   },
   plugins: [
     new webpack.DefinePlugin({

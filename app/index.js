@@ -2,15 +2,23 @@
 
 import React from 'react';
 import { render } from 'react-dom';
-import configureStore from './store/configureStore';
 import { Provider } from 'react-redux';
 import { Router, browserHistory } from 'react-router';
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 import routes from './routes';
 import 'bootstrap/scss/bootstrap.scss'
+const actions = require("actions");
+const store = require("configureStore").configure();
 
-const store = configureStore();
 global.store = store;
+
+store.subscribe (() => {
+  const state = store.getState()
+  console.log('New state', state)
+})
+
+store.dispatch(actions.startAddTodos())
+
 
 const history = syncHistoryWithStore(browserHistory, store);
 

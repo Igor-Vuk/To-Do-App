@@ -1,29 +1,39 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+const actions = require('actions')
+// import { bindActionCreators } from 'redux';
 
 class Todo extends Component {
   render() {
-    const {text, id, completed, onToggle} = this.props
+    const {text, id, completed, dispatch} = this.props
+    
     return (
-      <div onClick={() => {
-        this.props.onToggle(id)  
-      }}>
-        <input type="checkbox" checked={completed}/>
-        {text}
+      <div>
+        <div onClick={() => {
+          dispatch(actions.startToggleTodo(id, completed)) 
+        }}>
+          <input type="checkbox" checked={completed} />
+          {text}
+        </div>
+
+        <div>
+          <button className="btn" onClick={() => {
+            dispatch(actions.startDeleteTodo(id));
+          }}>Delete</button>
+        </div>
       </div>
     )
   }
 }
 
-function mapStateToProps(state, ownProps) {
-  return {};
-}
+// function mapStateToProps(state, ownProps) {
+//   return {};
+// }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators({}, dispatch)
-  };
-}
+// function mapDispatchToProps(dispatch) {
+//   return {
+//     actions: bindActionCreators({}, dispatch)
+//   };
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Todo);
+export default connect()(Todo);

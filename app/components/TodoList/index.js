@@ -1,15 +1,20 @@
-import React, {Component} from 'react'
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import Todo from 'Todo'
+// import { bindActionCreators } from 'redux'
 
 class TodoList extends Component {
   render() {
     const {todos} = this.props
     const renderTodos = () => {
+      if (todos.length === 0) {
+        return (
+            <p>Currently no todos</p>
+        )
+      }
       return todos.map(todo => {
         return (
-          <Todo key = {todo.id} {...todo} onToggle={this.props.onToggle}/>
+          <Todo key = {todo.id} {...todo} />
         )
       })
     }
@@ -21,14 +26,18 @@ class TodoList extends Component {
   }
 }
 
-function mapStateToProps(state, ownProps) {
-  return {};
-}
+// function mapStateToProps(state, ownProps) {
+//   return {
+//     todos: state.todos  
+//   }
+// }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators({}, dispatch)
-  };
-}
+// function mapDispatchToProps(dispatch) {
+//   return {
+//     actions: bindActionCreators({}, dispatch)
+//   }
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(TodoList);
+export default connect(state => {
+  return state
+})(TodoList)

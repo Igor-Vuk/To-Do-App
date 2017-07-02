@@ -20,11 +20,17 @@ export default {
     filename: 'bundle.js'
   },
   resolve: {
-    root: '__dirname',
+    root: __dirname,
     modulesDirectories: [
       'node_modules',
       './app/components'
-    ]
+    ],
+    alias: {
+      actions: 'app/actions/index.js',
+      reducers: 'app/reducers/index.js',
+      configureStore: 'app/store/configureStore.js'
+    },
+    extensions: ["", ".js", ".jsx"]
   },
   plugins: [
     new webpack.DefinePlugin({
@@ -47,7 +53,7 @@ export default {
       },
       {
         test: /\.css$/,
-        loader: "style-loader!css-loader" 
+        loader: 'style-loader!css-loader' 
       },
       {
         test: /\.(scss)$/,
@@ -63,7 +69,7 @@ export default {
       },
       {
         test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?(\?\d+)?$/,
-        loader: "file-loader?name=/fonts/[name].[ext]"
+        loader: 'file-loader?name=/fonts/[name].[ext]'
       }
     ]
   }
