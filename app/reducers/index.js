@@ -1,13 +1,3 @@
-// import { combineReducers } from 'redux';
-// import { routerReducer } from 'react-router-redux';
-
-// const rootReducer = combineReducers({
-//   routing: routerReducer
-// });
-
-// export default rootReducer;
-
-
 export var todosReducer = (state = [], action) => {
   switch (action.type) {
     case 'ADD_TODO':
@@ -16,7 +6,8 @@ export var todosReducer = (state = [], action) => {
         {
           text: action.text,
           id: action.id,
-          completed: action.completed
+          completed: action.completed,
+          details: action.details
         }
       ]
     case 'TOGGLE_TODO':
@@ -38,8 +29,19 @@ export var todosReducer = (state = [], action) => {
     case 'DELETE_TODO':
       return state.filter(todo => {
           return todo.id !== action.id
-        }) 
+        })
+    case 'ADD_DETAILS':
+      return state.map(todo => {
+        if(todo.id === action.id) {
+        return {
+          ...todo,
+          details: action.details
+        }
+      } else {
+        return todo
+      }
+    })
     default:
-      return state
+    return state
   }
 }

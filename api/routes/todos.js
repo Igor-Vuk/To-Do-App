@@ -3,8 +3,6 @@
 import { Router } from 'express';
 const router  = Router();
 const {Todo} = require("../models/todo")
-// const {mongoose} = require("../db/mongoose")
-// const {Todo} = require("../models/todo")
 
 // let demoTodos = [{
 //     "name": "test todo",
@@ -30,7 +28,8 @@ const {Todo} = require("../models/todo")
 router.post('/', (req, res) => {
  let newTodo = new Todo({
     text: req.body.text,
-    completed: req.body.completed
+    completed: req.body.completed,
+    details: req.body.details
   })
 
   newTodo.save().then(newTodo => {
@@ -50,10 +49,26 @@ router.get('/', (req, res) => {
   })
 })
 
+//GET DETAILS
+//-------------
+router.get('/:id', (req, res) => {
+  console.log(req.query.id)
+  let str = req.query.id
+  if(str.indexOf('/') === 0) {
+    str = str.substr(str.indexOf("/") + 1)
+  }
+  Todo.findById(str, (e, foundObject) => {
+    if(e) {
+        res.status(400).send(e)
+      } else {
+        res.send(foundObject)
+      }
+  })
+})
+
 //DELETE
 //-------------
 router.delete('/:id', (req, res) => {
-  
   Todo.findByIdAndRemove(req.body.id).then(todo => {
         res.send({todo});
     }, (e) => {
@@ -65,7 +80,12 @@ router.delete('/:id', (req, res) => {
 //-------------
 router.put('/:id', (req, res) => {
   Todo.findOne({_id:req.body.id}, (err, foundObject) => {
-    foundObject.completed = req.body.completed
+    if(req.body.details !== undefined) {
+      foundObject.details = req.body.details
+    }
+    if(req.body.completed !== undefined) {
+      foundObject.completed = req.body.completed
+    }
     foundObject.save((e, updatedTodo) => {
       if(err) {
         res.status(400).send(e)
@@ -75,36 +95,5 @@ router.put('/:id', (req, res) => {
     })
   })
 })
-
-/*router.get('/:id', (req, res) => {
-  const id = parseInt(req.params.id)
-
-  let todo = demoTodos.filter(item => item.id === id)
-
-  res.status(200).json(todo)
-})
-
-
-
-router.put('/:id', (req, res) => {
-  const id = parseInt(req.params.id)
-  let { name, desc, status } = req.body
-
-  demoTodos.map(item => {
-    if(parseInt(item.id) === id) {
-      item.name = name
-      item.desc = desc
-      item.status = status
-    }
-
-    return item
-  })
-
-  res.status(200).json({"statusText": "Updated"})
-
-})
-
-
-*/
 
 export default router

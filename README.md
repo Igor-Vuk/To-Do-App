@@ -1,8 +1,11 @@
 # Test
 
 Start project:
-1.`npm install`
-2.`npm start`
+
+1.run mongod (runs on localhost:27017)
+2.`npm install`
+3.`npm start`
+4.open localhost 9000
 
 Api routes:
 
@@ -12,19 +15,14 @@ Api routes:
 - PUT `/api/todos/:id`
 - DELETE `/api/todos/:id`
 
-Kreirati sljedeću aplikaciju:
+Assignment:
 
-TODO List aplikacija
+- add todos
+- check done todos
+- delete todos
+- show todo counter
+- add details to todos
+- back button
 
-- Aplikacija s popisom TODO zadataka
-- Početna stranica
-    - Prikazuje sve zadatke i njihovu količinu
-    - Na istoj stranici je moguće kroz text input field dodati novi zadatak
-    - Zadatke je moguće selektirati i obrisati
-    - Klikom na ime zadatka otvara se nova stranica - Detalji o zadatku
-- Detalji zadatka
-    - Prikazuje se ime zadatka s početne stranice i textarea input za detalje zadatka
-    - Textarea je moguće editirati
-    - Back button koji vraća na početnu stranicu
-
-Kod aplikacije uploadati na privatni github i poslati link.
+![picture alt](http://i.imgur.com/hYljezm.png "List")
+![picture alt](http://i.imgur.com/JxyXZrT.png "List")

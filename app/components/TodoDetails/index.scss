@@ -1,0 +1,13 @@
+textarea {
+  height: 200px;
+}
+
+.details-button {
+  margin-top: 10px;
+  position: relative;
+  top: 0px;
+  transition: all 0.3s;
+  &:active {
+    top: 3px;
+  }
+}

@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Todo from 'Todo'
-// import { bindActionCreators } from 'redux'
+import { Link } from 'react-router'
+import './index.scss'
 
 class TodoList extends Component {
   render() {
@@ -9,34 +10,25 @@ class TodoList extends Component {
     const renderTodos = () => {
       if (todos.length === 0) {
         return (
-            <p>Currently no todos</p>
+            <h3>Currently no todos</h3>
         )
       }
       return todos.map(todo => {
         return (
-          <Todo key = {todo.id} {...todo} />
+          <div className="task-style" key={todo.id}>
+            <Todo key = {todo.id} {...todo} className="task-style"/>
+          </div>
         )
       })
     }
     return (
       <div>
+        <h2>You have {todos.length} tasks</h2>
         {renderTodos()}
       </div>
     )
   }
 }
-
-// function mapStateToProps(state, ownProps) {
-//   return {
-//     todos: state.todos  
-//   }
-// }
-
-// function mapDispatchToProps(dispatch) {
-//   return {
-//     actions: bindActionCreators({}, dispatch)
-//   }
-// }
 
 export default connect(state => {
   return state

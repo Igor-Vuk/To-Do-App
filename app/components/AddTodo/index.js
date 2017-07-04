@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux';
-// import { bindActionCreators } from 'redux';
 const actions = require('actions')
 
 class AddTodo extends Component {
@@ -20,22 +19,16 @@ class AddTodo extends Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <input type="text" ref="todoText" placeholder="Add todo!"/>
-          <button className="btn btn-danger">Add Todo</button>
+          <div className="input-group">
+            <input type="text" ref="todoText" placeholder="Add todo!" className="form-control"/>
+            <span className="input-group-btn">
+              <button className="btn btn-primary">Add Todo</button>
+            </span>
+          </div>
         </form>
       </div>
     )
   }
 }
-
-// function mapStateToProps(state, ownProps) {
-//   return {};
-// }
-
-// function mapDispatchToProps(dispatch) {
-//   return {
-//     actions: bindActionCreators({}, dispatch)
-//   };
-// }
 
 export default connect()(AddTodo);

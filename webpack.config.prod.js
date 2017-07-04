@@ -1,4 +1,4 @@
-import webpack from 'webpack';
+import webpack from 'webpack'
 
 export default {
   devtool: 'source-map',
@@ -55,4 +55,4 @@ export default {
       }
     ]
   }
-};
+}
